@@ -1,0 +1,2 @@
+# usgAcct
+usgAcct manages ~bystar/bpos/xxx -- for example  obtains ~bystar/bpos/sites/selected/bpoSitexx
