@@ -88,6 +88,8 @@ from bisos.common import csParam
 import collections
 ####+END:
 
+import pathlib
+
 ####+BEGIN: b:py3:cs:orgItem/section :title "Common Parameters Specification" :comment "based on cs.param.CmndParamDict -- As expected from CSU-s"
 """ #+begin_org
 *  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  /Section/    [[elisp:(outline-show-subtree+toggle)][||]] *Common Parameters Specification* based on cs.param.CmndParamDict -- As expected from CSU-s  [[elisp:(org-cycle)][| ]]
@@ -110,13 +112,6 @@ def commonParamsSpecify(
 #+end_org """
 ####+END:
 
-# G = cs.globalContext.get()
-# icmRunArgs = G.icmRunArgsGet()
-
-perfName = "siteRegistrar"
-roSiteRegistrarSapPath = cs.ro.SapBase_FPs.perfNameToRoSapPath(perfName)  # static method
-
-cs.invOutcomeReportControl(cmnd=True, ro=True)
 
 ####+BEGIN: b:py3:cs:orgItem/section :title "CSU-Lib Examples" :comment "-- Providing examples_csu"
 """ #+begin_org
@@ -137,12 +132,114 @@ def examples_csu(
 ** [[elisp:(org-cycle)][| *DocStr* |]] Examples of Service Access Instance Commands.
     #+end_org """
 
-    if sectionTitle == 'Site Registrars Port Numbers':
-        cs.examples.menuChapter('*Invoker Only Commands*')
+    if sectionTitle == 'default':
+        cs.examples.menuChapter('*usgAcctBposBase CRUD*')
 
-    cmndName = "portNuOf" ; cmndArgs = "csSiteRegBox" ;
+    cmndName = "usgAcctBposBaseCreate" ; cmndArgs = "" ;
     cps = collections.OrderedDict() ;
     cs.examples.cmndInsert(cmndName, cps, cmndArgs,)
+
+    cmndName = "usgAcctBposBaseRead" ; cmndArgs = "" ;
+    cps = collections.OrderedDict() ;
+    cs.examples.cmndInsert(cmndName, cps, cmndArgs,)
+
+    if sectionTitle == 'default':
+        cs.examples.menuChapter('*usgAcctBposNamed CRUD*')
+
+    cmndName = "usgAcctBposNamedRead" ; cmndArgs = "sites/selected" ;
+    cps = collections.OrderedDict() ;
+    cs.examples.cmndInsert(cmndName, cps, cmndArgs,)
+
+
+####+BEGIN: blee:bxPanel:foldingSection :outLevel 0 :sep nil :title "Functions" :anchor ""  :extraInfo "Support Functions"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*     [[elisp:(outline-show-subtree+toggle)][| _Functions_: |]]  Support Functions  [[elisp:(org-shifttab)][<)]] E|
+#+end_org """
+####+END:
+
+####+BEGIN: bx:dblock:python:class :className "UsgAcctBposBase" :superClass "" :comment "" :classType "basic"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  Cls-basic  [[elisp:(outline-show-subtree+toggle)][||]] /UsgAcctBposBase/ object  [[elisp:(org-cycle)][| ]]
+#+end_org """
+class UsgAcctBposBase(object):
+####+END:
+    """
+** CRUD for UsgAcctBposBase
+"""
+####+BEGIN: b:py3:cs:method/typing :methodName "__init__" :deco "default"
+    """ #+begin_org
+**  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  Mtd-T-     [[elisp:(outline-show-subtree+toggle)][||]] /__init__/ deco=default  deco=default   [[elisp:(org-cycle)][| ]]
+    #+end_org """
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
+    def __init__(
+####+END:
+            self,
+    ):
+        home = pathlib.Path.home()
+        self.bposBase = home.joinpath('bpos')
+
+####+BEGIN: b:py3:cs:method/typing :methodName "create" :deco "classmethod"
+    """ #+begin_org
+**  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  Mtd-T-     [[elisp:(outline-show-subtree+toggle)][||]] /create/  deco=classmethod  [[elisp:(org-cycle)][| ]]
+    #+end_org """
+    @classmethod
+    def create(
+####+END:
+            cls,
+    )  -> typing.Optional[pathlib.Path]:
+
+        bposBase = cls().bposBase
+        bposBase.mkdir(parents=True, exist_ok=True)
+        assert bposBase.exists()
+        return bposBase
+
+####+BEGIN: b:py3:cs:method/typing :methodName "read" :deco "classmethod"
+    """ #+begin_org
+**  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  Mtd-T-     [[elisp:(outline-show-subtree+toggle)][||]] /read/  deco=classmethod  [[elisp:(org-cycle)][| ]]
+    #+end_org """
+    @classmethod
+    def read(
+####+END:
+            cls,
+    )  -> typing.Optional[pathlib.Path]:
+
+        return cls().bposBase
+
+
+####+BEGIN: bx:dblock:python:class :className "UsgAcctBposNamed" :superClass "" :comment "" :classType "basic"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  Cls-basic  [[elisp:(outline-show-subtree+toggle)][||]] /UsgAcctBposNamed/ object  [[elisp:(org-cycle)][| ]]
+#+end_org """
+class UsgAcctBposNamed(object):
+####+END:
+    """
+** CRUD for UsgAcctBposNamed
+"""
+####+BEGIN: b:py3:cs:method/typing :methodName "__init__" :deco "default"
+    """ #+begin_org
+**  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  Mtd-T-     [[elisp:(outline-show-subtree+toggle)][||]] /__init__/ deco=default  deco=default   [[elisp:(org-cycle)][| ]]
+    #+end_org """
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
+    def __init__(
+####+END:
+            self,
+            name: str,
+    ):
+        bposBase = UsgAcctBposBase.read()
+        self.named = bposBase.joinpath(name)
+
+####+BEGIN: b:py3:cs:method/typing :methodName "read" :deco "classmethod"
+    """ #+begin_org
+**  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  Mtd-T-     [[elisp:(outline-show-subtree+toggle)][||]] /read/  deco=classmethod  [[elisp:(org-cycle)][| ]]
+    #+end_org """
+    @classmethod
+    def read(
+####+END:
+            cls,
+            name: str,
+    )  -> typing.Optional[pathlib.Path]:
+
+        return cls(name).named.resolve()
 
 ####+BEGIN: blee:bxPanel:foldingSection :outLevel 0 :sep nil :title "CmndSvc" :anchor ""  :extraInfo "Command Services Section"
 """ #+begin_org
@@ -150,14 +247,97 @@ def examples_csu(
 #+end_org """
 ####+END:
 
-####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "portNuOf" :comment "" :extent "verify" :ro "noCli" :parsMand "" :parsOpt "" :argsMin 1 :argsMax 9999 :pyInv "methodInvokeArg"
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "usgAcctBposBaseCreate" :comment "" :extent "verify" :ro "noCli" :parsMand "" :parsOpt "" :argsMin 0 :argsMax 0 :pyInv ""
 """ #+begin_org
-*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<portNuOf>>  =verify= argsMin=1 argsMax=9999 ro=noCli pyInv=methodInvokeArg   [[elisp:(org-cycle)][| ]]
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<usgAcctBposBaseCreate>>  =verify= ro=noCli   [[elisp:(org-cycle)][| ]]
 #+end_org """
-class portNuOf(cs.Cmnd):
+class usgAcctBposBaseCreate(cs.Cmnd):
     cmndParamsMandatory = [ ]
     cmndParamsOptional = [ ]
-    cmndArgsLen = {'Min': 1, 'Max': 9999,}
+    cmndArgsLen = {'Min': 0, 'Max': 0,}
+    rtInvConstraints = cs.rtInvoker.RtInvoker.new_noRo() # NO RO From CLI
+
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
+    def cmnd(self,
+             rtInv: cs.RtInvoker,
+             cmndOutcome: b.op.Outcome,
+    ) -> b.op.Outcome:
+
+        callParamsDict = {}
+        if self.invocationValidate(rtInv, cmndOutcome, callParamsDict, None).isProblematic():
+            return b_io.eh.badOutcome(cmndOutcome)
+####+END:
+        if self.cmndDocStr(""" #+begin_org
+** [[elisp:(org-cycle)][| *CmndDesc:* | ]]
+        #+end_org """): return(cmndOutcome)
+
+        self.captureRunStr(""" #+begin_org
+#+begin_src sh :results output :session shared
+  usgAcctManage.cs -i usgAcctBposBaseCreate
+#+end_src
+#+RESULTS:
+:
+: /bxo/usg/bystar/bpos
+        #+end_org """)
+        if self.justCaptureP(): return cmndOutcome
+
+        result = UsgAcctBposBase.create()
+
+        print(result)
+
+        return cmndOutcome.set(opResults=str(result),)
+
+
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "usgAcctBposBaseRead" :comment "" :extent "verify" :ro "noCli" :parsMand "" :parsOpt "" :argsMin 0 :argsMax 0 :pyInv ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<usgAcctBposBaseRead>>  =verify= ro=noCli   [[elisp:(org-cycle)][| ]]
+#+end_org """
+class usgAcctBposBaseRead(cs.Cmnd):
+    cmndParamsMandatory = [ ]
+    cmndParamsOptional = [ ]
+    cmndArgsLen = {'Min': 0, 'Max': 0,}
+    rtInvConstraints = cs.rtInvoker.RtInvoker.new_noRo() # NO RO From CLI
+
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
+    def cmnd(self,
+             rtInv: cs.RtInvoker,
+             cmndOutcome: b.op.Outcome,
+    ) -> b.op.Outcome:
+
+        callParamsDict = {}
+        if self.invocationValidate(rtInv, cmndOutcome, callParamsDict, None).isProblematic():
+            return b_io.eh.badOutcome(cmndOutcome)
+####+END:
+        if self.cmndDocStr(""" #+begin_org
+** [[elisp:(org-cycle)][| *CmndDesc:* | ]]
+        #+end_org """): return(cmndOutcome)
+
+        self.captureRunStr(""" #+begin_org
+#+begin_src sh :results output :session shared
+  usgAcctManage.cs -i usgAcctBposBaseRead
+#+end_src
+#+RESULTS:
+:
+: /bxo/usg/bystar/bpos
+        #+end_org """)
+        if self.justCaptureP(): return cmndOutcome
+
+        result = UsgAcctBposBase.read()
+
+        print(result)
+
+        return cmndOutcome.set(opResults=result,)
+
+
+
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "usgAcctBposNamedRead" :comment "" :extent "verify" :ro "noCli" :parsMand "" :parsOpt "" :argsMin 1 :argsMax 1 :pyInv ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<usgAcctBposNamedRead>>  =verify= argsMin=1 argsMax=1 ro=noCli   [[elisp:(org-cycle)][| ]]
+#+end_org """
+class usgAcctBposNamedRead(cs.Cmnd):
+    cmndParamsMandatory = [ ]
+    cmndParamsOptional = [ ]
+    cmndArgsLen = {'Min': 1, 'Max': 1,}
     rtInvConstraints = cs.rtInvoker.RtInvoker.new_noRo() # NO RO From CLI
 
     @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
@@ -165,7 +345,6 @@ class portNuOf(cs.Cmnd):
              rtInv: cs.RtInvoker,
              cmndOutcome: b.op.Outcome,
              argsList: typing.Optional[list[str]]=None,  # CsArgs
-             methodInvokeArg: typing.Any=None,   # pyInv Argument
     ) -> b.op.Outcome:
 
         callParamsDict = {}
@@ -174,56 +353,29 @@ class portNuOf(cs.Cmnd):
         cmndArgsSpecDict = self.cmndArgsSpec()
 ####+END:
         if self.cmndDocStr(""" #+begin_org
-** [[elisp:(org-cycle)][| *CmndDesc:* | ]]  Map svcName to portNu. Outcome is a list of port numbers.
+** [[elisp:(org-cycle)][| *CmndDesc:* | ]]
         #+end_org """): return(cmndOutcome)
 
         self.captureRunStr(""" #+begin_org
 #+begin_src sh :results output :session shared
-  csSiteRegBox.cs -i portNuOf csSiteRegBox
+  usgAcctManage.cs -i usgAcctBposNamedRead sites/selected
 #+end_src
 #+RESULTS:
 :
-: ['22222001']
+: /bxo/r3/iso/pis_superSiteNeda
         #+end_org """)
         if self.justCaptureP(): return cmndOutcome
 
-        result: list[str] = []
-        actionArgs = self.cmndArgsGet("0&9999", cmndArgsSpecDict, argsList)
+        cmndArgsSpecDict = self.cmndArgsSpec()
+        cmndsArgs = self.cmndArgsGet("0", cmndArgsSpecDict, argsList)
 
-        # print(f"{actionArgs}")
+        namedBpo = cmndsArgs
 
-        def mapSvcNameToPortNu(
-                svcName: str,
-        ) -> str:
-            b.comment.orgMode(""" #+begin_org
-*****  [[elisp:(org-cycle)][| *Note:* | ]] Incomplete, needs to look up the port from /bisos/admin/BxANA/portNumbers/transportPortNumberRegistry.txt
-            #+end_org """)
+        result = UsgAcctBposNamed.read(namedBpo)
 
-            portNu: str = ""
-            if svcName == 'csSiteRegBox':
-                portNu = "22222001"
-            elif svcName == 'csSiteRegContainer':
-                portNu = "22222002"
-            else:
-                #b_io.eh.problem_usageError(f"Unknown svcName={svcName}")
-                portNu = "NOTFOUND"
-
-            return portNu
-
-        for each in actionArgs:
-            portNu = mapSvcNameToPortNu(each)
-            result.append(portNu)
-
-        b.comment.orgMode(""" #+begin_org
-*****  [[elisp:(org-cycle)][| *Note:* | ]] NOTYET, Next we take in stdin, when interactive.
-        if not methodInvokeArg:
-            methodInvokeArg = b_io.stdin.read()
-
-        print(f"stdin instead of methodInvokeArg = {methodInvokeArg}")
-        #+end_org """)
+        print(result)
 
         return cmndOutcome.set(opResults=result,)
-
 
 ####+BEGIN: b:py3:cs:method/args :methodName "cmndArgsSpec" :methodType "anyOrNone" :retType "bool" :deco "default" :argsList "self"
     """ #+begin_org
@@ -232,16 +384,15 @@ class portNuOf(cs.Cmnd):
     @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
     def cmndArgsSpec(self, ):
 ####+END:
-        """  #+begin_org
-*** [[elisp:(org-cycle)][| *cmndArgsSpec:* | ]] First arg defines rest
-        #+end_org """
-
+        """
+***** Cmnd Args Specification  -- Each As Any.
+"""
         cmndArgsSpecDict = cs.arg.CmndArgsSpecDict()
         cmndArgsSpecDict.argsDictAdd(
-            argPosition="0&9999",
-            argName="actionArgs",
+            argPosition="0",
+            argName="cmndArgs",
             argChoices=[],
-            argDescription="Rest of args for use by action"
+            argDescription="List Of CmndArgs To Be Processed. Each As Any."
         )
 
         return cmndArgsSpecDict

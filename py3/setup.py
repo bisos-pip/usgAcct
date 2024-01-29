@@ -17,7 +17,7 @@ def longDescription():
 
 
 #__version__ = get_version('unisos/icm/__init__.py')
-__version__ = '0.1'
+__version__ = '0.2'
 
 
 requires = [
@@ -28,24 +28,18 @@ requires = [
 #print('Requirements: %s' % ','.join(requires))
 
 scripts = [
-    "bin/csSiteRegBox.cs",
-    "bin/csSiteRegNets.cs",
-    "bin/csSiteRegContainer.cs",
-    "bin/siteRegistrarsDaemonSysd.cs",
-    "bin/siteRegistrarsRuns.cs",
+    "bin/usgAcctAdmin.cs",
 ]
 
 #
 # Data files are specified in ./MANIFEST.in as:
-# recursive-include unisos/marme-base *
-# recursive-include unisos/marme-config *
 #
     
 data_files = [
 ]
 
 setuptools.setup(
-    name='bisos.siteRegistrars',
+    name='bisos.usgAcct',
     version=__version__,
     namespace_packages=['bisos'],
     packages=setuptools.find_packages(),
