@@ -1,1 +1,0 @@
-usgAcct for abstracting and CRUD of the likes $HOME/bpos/sites/selected

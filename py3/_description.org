@@ -1,17 +1,7 @@
 #+title: bisos.usgAcct: Usage Account
-#+DATE: <2024-02-19 Mon 16:27>
-#+AUTHOR: Mohsen BANAN
-#+OPTIONS: toc:4
 
-#+BEGIN: b:org:pypi:readme/topControls :pkgName "capability" :comment "basic"
 
-|----------------------+------------------------------------------------------------------|
-| ~Blee Panel Controls~: | [[elisp:(show-all)][Show-All]] : [[elisp:(org-shifttab)][Overview]] : [[elisp:(progn (org-shifttab) (org-content))][Content]] : [[elisp:(delete-other-windows)][(1)]] : [[elisp:(progn (save-buffer) (kill-buffer))][S&Q]] : [[elisp:(save-buffer)][Save]]  : [[elisp:(kill-buffer)][Quit]]  : [[elisp:(bury-buffer)][Bury]] |
-| ~Panel Links~:         | [[file:./py3/panels/bisos.capability/_nodeBase_/fullUsagePanel-en.org][Repo Blee Panel]]                                                  |
-| ~See Also~:            | [[https://pypi.org/project/bisos.capability][At PYPI]] : [[https://github.com/bisos-pip/pycs][bisos.PyCS]]                                             |
-|----------------------+------------------------------------------------------------------|
 
-#+END:
 
 * Overview
 
@@ -19,19 +9,22 @@ bisos.capability is a python package for BISOS Capabilities Bundles -- Abstracti
 Materialization.
 
 
-#+BEGIN: b:org:pypi:readme/pkgDocumentation :pkgName "capability-cs" :comment "basic"
 
-# PYPI Documentation Comes Here in _description.org
-#+END:
+* Package Documentation At Github
+
+The information below is a subset of the full of documentation for this bisos-pip package.
+More complete documentation is available at: https://github.com/bisos-pip/capability-cs
+
 
 * Realted Resources
 
-| bisos Capabilities Panel | file:/py3/panels/capabilities/_nodeBase_/fullUsagePanel-en.org |
+| bisos Capabilities Panel | file:/panels/capabilities/_nodeBase_/fullUsagePanel-en.org |
 |                          |                                                                |
 
 
 * Table of Contents     :TOC:
 - [[#overview][Overview]]
+- [[#package-documentation-at-github][Package Documentation At Github]]
 - [[#realted-resources][Realted Resources]]
 - [[#installation][Installation]]
   - [[#installation-with-pip][Installation With pip]]
@@ -112,28 +105,6 @@ author/maintainer\\
 [[http://mohsen.1.banan.byname.net/contact]]
 
 
-# ###+BEGIN: blee:bxPanel:footerOrgParams :panelType "readme"
-#+STARTUP: overview
-#+STARTUP: lognotestate
-#+STARTUP: inlineimages
-#+SEQ_TODO: TODO WAITING DELEGATED | DONE DEFERRED CANCELLED
-#+TAGS: @desk(d) @home(h) @work(w) @withInternet(i) @road(r) call(c) errand(e)
-#+CATEGORY: U:capability
 
-# ###+END:
 
-# ###+BEGIN: blee:bxPanel:footerEmacsParams :primMode "org-mode" :panelType "readme"
-# Local Variables:
-# eval: (setq-local toc-org-max-depth 4)
-# eval: (setq-local ~selectedSubject "noSubject")
-# eval: (setq-local ~primaryMajorMode 'org-mode)
-# eval: (setq-local ~blee:panelUpdater nil)
-# eval: (setq-local ~blee:dblockEnabler nil)
-# eval: (setq-local ~blee:dblockController "interactive")
-# eval: (img-link-overlays)
-# eval: (set-fill-column 115)
-# eval: (blee:fill-column-indicator/enable)
-# eval: (bx:load-file:ifOneExists "./panelActions.el")
-# End:
 
-# ###+END
